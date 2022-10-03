@@ -1,0 +1,129 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 ml-3">
+                <button mat-raised-button (click)="showForm()" class="btn btn-danger">
+                    <mat-icon>add</mat-icon>Clientes
+                </button>
+            </div>
+        </div>
+        <div *ngIf="flag" class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Ingreso de Clientes</h4>
+                        <p class="card-category">Completa la Informacion del Cliente</p>
+                    </div>
+                    <div class="card-body">
+                        <mat-progress-bar *ngIf="barFlagForm" [color]="warn" mode="indeterminate"></mat-progress-bar>
+                        <form>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Nombres" autocomplete="off" [(ngModel)]="iNames">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-3">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Apellidos" autocomplete="off"
+                                            [(ngModel)]="iLastNames">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="DPI" autocomplete="off" type="number"
+                                            [(ngModel)]="iDpi">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Direccion" type="text" autocomplete="off"
+                                            [(ngModel)]="iAdress">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-4">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput placeholder="Telefono" type="number" autocomplete="nope"
+                                            [(ngModel)]="iPhone">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <label>Comentarios adicionales</label>
+                                    <mat-form-field class="example-full-width">
+                                        <textarea matInput [(ngModel)]="iComments" placeholder="*"></textarea>
+                                    </mat-form-field>
+                                    <!-- <div class="form-group">
+  
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                            <textarea class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <button mat-raised-button (click)="createClient()"
+                                class="btn btn-danger pull-right">Crear</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Mis clientes</h4>
+                        <p class="card-category">Detalle de clientes</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <div class="table-responsive table-container">
+                                <mat-progress-bar *ngIf="barFlagTable" mode="indeterminate"></mat-progress-bar>
+                                <br>
+                                <mat-table [dataSource]="dataSource" class="table">
+                                    <ng-container matColumnDef="id">
+                                        <mat-header-cell *matHeaderCellDef>No</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">{{element.id_cliente}}</mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef>Nombre</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">{{element.nombres}} {{element.apellidos}}
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="telefono">
+                                        <mat-header-cell *matHeaderCellDef>Telefono</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">{{element.telefono}}
+
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="fecha">
+                                        <mat-header-cell *matHeaderCellDef>Visita</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            <p *ngIf="element.visitado === true">Visitado</p>
+                                            <p *ngIf="element.visitado === false">Por visitar</p>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="visitado">
+                                        <mat-header-cell *matHeaderCellDef>Fecha</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">{{element.fecha_registro | date:'dd/MM/yy'}}
+
+                                        </mat-cell>
+                                    </ng-container>
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;" (click)="clickRow(row)">
+                                    </mat-row>
+                                </mat-table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,17 @@
+.mat-input-element {
+    caret-color: #e91e63 !important;
+}
+
+
+
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: #e91e63 !important;
+  }
+
+.table-container {
+    position: relative;
+    overflow: auto;
+    max-height:273px;
+}
+

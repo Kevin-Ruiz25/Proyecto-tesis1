@@ -1,0 +1,110 @@
+<div class="main-content">
+    <div class="row">
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-tabs card-header-primary">
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <span class="nav-tabs-title">Tareas: </span>
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a mat-button class="nav-link active" href="#profile" data-toggle="tab">
+                                        <i class="material-icons">list</i> Visitas
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a mat-button class="nav-link" href="#messages" data-toggle="tab">
+                                        <i class="material-icons">task</i> Visitados
+                                        <div class="ripple-container"></div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <mat-progress-bar *ngIf="barFlag" mode="indeterminate"></mat-progress-bar>
+                    <div class="tab-content" id="tableTracking">
+                        <div class="tab-pane active" id="profile">
+                            <!-- <cdk-virtual-scroll-viewport tvsItemSize class="wrapper mat-elevation-z2"> -->
+                            <div class="table-responsive table-container">
+                                <mat-table [dataSource]="dataSourceToVisit" class="table">
+                                    <ng-container matColumnDef="id">
+                                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                                        <mat-cell *matCellDef="let element" (click)="clickRow(element)"
+                                            matTooltip="Informacion" [matTooltipPosition]="'above'">
+                                            <p style="color:#66ad5f; margin-bottom: 0rem;">{{element.id_cliente}}</p>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{element.nombres}} {{element.apellidos}}
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="action">
+                                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            <button (click)="visitedClient(element)" mat-raised-button type="button"
+                                                matTooltip="Registrar Visita" [matTooltipPosition]="'above'"
+                                                class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">task</i>
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumns;">
+                                    </mat-row>
+                                </mat-table>
+                            </div>
+                            <!-- </cdk-virtual-scroll-viewport> -->
+                        </div>
+                        <div class="tab-pane" id="messages">
+                            <!-- <cdk-virtual-scroll-viewport tvsItemSize class="wrapper mat-elevation-z2"> -->
+                            <div class="table-responsive table-container">
+                                <mat-table [dataSource]="dataSourceVisited" class="table">
+                                    <ng-container matColumnDef="id">
+                                        <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            <p style="color:#66ad5f; margin-bottom: 0rem;">{{element.id_cliente}}</p>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="name">
+                                        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{element.nombres}} {{element.apellidos}}
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="visitado">
+                                        <mat-header-cell *matHeaderCellDef> Estado</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            <p style="margin-bottom: 0rem;" *ngIf="element.visitado === true">Visitado</p>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <!--<ng-container matColumnDef="symbol">
+                                        <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
+                                        <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+                                    </ng-container> -->
+                                    <mat-header-row *matHeaderRowDef="displayedColumnsClientesVisitados">
+                                    </mat-header-row>
+                                    <mat-row *matRowDef="let row; columns: displayedColumnsClientesVisitados;" (click)="getUbicationClient(row)">
+                                    </mat-row>
+                                </mat-table>
+                            </div>
+                            <!-- </cdk-virtual-scroll-viewport> -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-md-12">
+            <div class="card">
+                <div class="card-header card-header-warning">
+                    <h4 class="card-title">Mapa</h4>
+                    <!-- <p class="card-category">Ubicacion aproximada</p> -->
+                </div>
+                <div id="map"></div>
+            </div>
+        </div>
+    </div>
+</div>

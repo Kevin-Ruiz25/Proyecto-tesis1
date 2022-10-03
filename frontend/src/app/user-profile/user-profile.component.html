@@ -1,0 +1,208 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Perfil</h4>
+            <p class="card-category">Informacion</p>
+          </div>
+          <div class="card-body">
+            <form>
+              <div class="row">
+                <div class="col-md-6">
+                  <span>
+                    <label>Bienvenido colaborador:</label>
+                    <p>{{user?.nombre}} {{user?.apellido}}</p>
+                  </span>
+
+                </div>
+
+                <div class="col-md-6">
+                  <label>Codigo de Usuario</label>
+                  <p>{{user?.id_usuario}}</p>
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <span>
+                    <label>Actividad que Desempeña</label>
+                    <p>{{user?.rol}}</p>
+                  </span>
+
+                </div>
+                <div class="col-md-6">
+                  <label>Estimado colaborador recuerda que: </label><br>
+                  <em>"Todo momento es el momento para dar el maximo"</em>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <!-- <label>Direccion</label>
+                                    <p>{{direccion}}</p> -->
+                </div>
+                <div class="col-md-4">
+
+                </div>
+                <div class="col-md-4">
+
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <span>
+                    <!-- <label>Observaciones: </label>
+                                        <p>{{observaciones}}</p> -->
+                  </span>
+                  <!-- <div class="form-group">
+  
+                                        <div class="form-group">
+                                            <label class="bmd-label-floating"> Lamborghini Mercy, Your chick she so thirsty, I'm in that two seat Lambo.</label>
+                                            <textarea class="form-control" rows="5"></textarea>
+                                        </div>
+                                    </div> -->
+                </div>
+              </div>
+              <!-- <button mat-raised-button type="submit" class="btn btn-danger pull-right">Update
+                                Profile</button> -->
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="col-md-4">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <a href="javascript:void(0)">
+              <img class="img" src="./assets/img/faces/marc.jpg" />
+            </a>
+          </div>
+          <div class="card-body">
+            <h6 class="card-category text-gray">CEO / Co-Founder</h6>
+            <h4 class="card-title">Alec Thompson</h4>
+            <p class="card-description">
+              Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
+              Kanye loves Kanye I love Rick Owens’ bed design but the back is...
+            </p>
+            <a href="javascript:void(0)" class="btn btn-danger btn-round">Follow</a>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="card" *ngIf="user?.rol==='Administrador'">
+      <div class="card-header card-header-tabs card-header-primary">
+        <div class="nav-tabs-navigation">
+          <div class="nav-tabs-wrapper">
+            <span class="nav-tabs-title">Opciones: </span>
+            <ul class="nav nav-tabs" data-tabs="tabs">
+              <li class="nav-item">
+                <a mat-button class="nav-link active" href="#users" data-toggle="tab">
+                  <i class="material-icons">list</i> Usuarios
+                  <div class="ripple-container"></div>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a mat-button class="nav-link" href="#create" data-toggle="tab">
+                  <i class="material-icons">add</i> Nuevo Usuario
+                  <div class="ripple-container"></div>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="card-body">
+        <mat-progress-bar *ngIf="barFlag" mode="indeterminate"></mat-progress-bar>
+        <br>
+        <div class="tab-content" id="tableTracking">
+          <div class="tab-pane active" id="users">
+            <!-- <cdk-virtual-scroll-viewport tvsItemSize class="wrapper mat-elevation-z2"> -->
+            <div class="table-responsive table-container">
+              <mat-table [dataSource]="dataSourceUsers" class="table">
+                <ng-container matColumnDef="id">
+                  <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    {{element.id}}
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="nombre">
+                  <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+                  <mat-cell *matCellDef="let element"> {{element.nombre}} {{element.apellido}}
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="rol">
+                  <mat-header-cell *matHeaderCellDef> Rol </mat-header-cell>
+                  <mat-cell *matCellDef="let element">{{element.rol}}
+                  </mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="session">
+                  <mat-header-cell *matHeaderCellDef> Estado </mat-header-cell>
+                  <mat-cell *matCellDef="let element">
+                    <p *ngIf="element.sesion ===true" style="color:#66ad5f; margin-bottom: 0rem;"><strong>Online</strong></p>
+                    <p *ngIf="element.sesion ===false" style="color:#e31111; margin-bottom: 0rem;"><strong>Offline</strong></p>
+                  </mat-cell>
+                </ng-container>
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                <mat-row *matRowDef="let row; columns: displayedColumns;">
+                </mat-row>
+              </mat-table>
+            </div>
+            <!-- </cdk-virtual-scroll-viewport> -->
+          </div>
+          <div class="tab-pane" id="create">
+            <!-- <cdk-virtual-scroll-viewport tvsItemSize class="wrapper mat-elevation-z2"> -->
+
+            <mat-progress-bar *ngIf="barFlagForm" [color]="warn" mode="indeterminate"></mat-progress-bar>
+            <form>
+              <div class="row">
+                <div class="col-md-5">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nombres" autocomplete="off" [(ngModel)]="iNames">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-3">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Apellidos" autocomplete="off" [(ngModel)]="iLastNames">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Usuario" autocomplete="off" [(ngModel)]="iNick">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-5">
+                  <mat-form-field class="example-full-width" style="padding-top: 16px;">
+                    <input matInput placeholder="Contraseña" type="text" autocomplete="off" [(ngModel)]="iPass">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-5">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Selecciona rol de Usuario</mat-label>
+                    <mat-select [(ngModel)]="rol">
+                      <mat-option *ngFor="let rol of rols" [value]="rol.id">
+                        {{rol.nombre}}
+                      </mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button color="primary" [disabled]="barFlagForm" (click)="createUser()" class="btn pull-right ">Crear</button>
+              <div class="clearfix"></div>
+            </form>
+
+            <!-- </cdk-virtual-scroll-viewport> -->
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+.table-container {
+  position: relative;
+  overflow: auto;
+  max-height: 273px;
+}
+
+@media only screen and (max-width: 500px) {
+  .mat-cell{
+    font-size: 10px !important;
+  }
+}
