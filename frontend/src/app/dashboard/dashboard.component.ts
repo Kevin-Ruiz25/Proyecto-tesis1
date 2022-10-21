@@ -89,13 +89,13 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  displayedColumns: string[] = ["id", "name", "action"];
-  displayedColumnsClientesVisitados: string[] = ["id", "name", "visitado"];
+  displayedColumns: string[] = ["id", "name", "action", "delete"];
+  displayedColumnsClientesVisitados: string[] = ["id", "name", "visitado","delete"];
   visitedClient(row: any) {
     this.getUbication();
     let idAdress = null;
     this.api
-      .post("direcciones/obtener-direcciones", {
+      .post("direcciones/obtener", {
         id_usuario: row.id_usuario_registro,
         id_cliente: row.id_cliente,
       })
@@ -198,7 +198,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getUbicationClient(row: any){
-    this.api.post('direcciones/obtener-direcciones', {
+    this.api.post('direcciones/obtener', {
       id_usuario: row.id_usuario_registro,
       id_cliente: row.id_cliente
     }).subscribe({
@@ -364,5 +364,21 @@ export class DashboardComponent implements OnInit {
 
     // To add the marker to the map, call setMap();
     marker.setMap(map);
+  }
+
+  deleteCliente(id: any){
+    this.api.delete("clientes/eliminar/"+id).subscribe({
+      next: (res: any) => {
+        if (res.exito) {
+          this.swalMixin("Cliete eliminido con exito", "success");
+          this.ngOnInit();
+          // this.observaciones = res.find((element) => element.activa === true).observaciones;
+        }
+      },
+      error: (error: any) => {
+        this.swalMixin("Error al eliminar cliente, intente de nuevo", "error");
+      },
+    })
+
   }
 }

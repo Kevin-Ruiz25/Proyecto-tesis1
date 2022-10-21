@@ -43,12 +43,22 @@
                                         </mat-cell>
                                     </ng-container>
                                     <ng-container matColumnDef="action">
-                                        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                                        <mat-header-cell *matHeaderCellDef> Accion </mat-header-cell>
                                         <mat-cell *matCellDef="let element">
                                             <button (click)="visitedClient(element)" mat-raised-button type="button"
                                                 matTooltip="Registrar Visita" [matTooltipPosition]="'above'"
                                                 class="btn btn-primary btn-link btn-sm btn-just-icon">
                                                 <i class="material-icons">task</i>
+                                            </button>
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="delete">
+                                        <mat-header-cell *matHeaderCellDef>Borrar</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            <button (click)="deleteCliente(element.id_cliente)" mat-raised-button type="button"
+                                                matTooltip="Borrar Cliente" [matTooltipPosition]="'above'"
+                                                class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">delete</i>
                                             </button>
                                         </mat-cell>
                                     </ng-container>
@@ -77,7 +87,18 @@
                                     <ng-container matColumnDef="visitado">
                                         <mat-header-cell *matHeaderCellDef> Estado</mat-header-cell>
                                         <mat-cell *matCellDef="let element">
-                                            <p style="margin-bottom: 0rem;" *ngIf="element.visitado === true">Visitado</p>
+                                            <p style="margin-bottom: 0rem;" *ngIf="element.visitado === true"><i id="done" class="material-icons"> done</i></p>
+                                            
+                                        </mat-cell>
+                                    </ng-container>
+                                    <ng-container matColumnDef="delete">
+                                        <mat-header-cell *matHeaderCellDef>Borrar</mat-header-cell>
+                                        <mat-cell *matCellDef="let element">
+                                            <button (click)="deleteCliente(element.id_cliente)" mat-raised-button type="button"
+                                                matTooltip="Borrar Cliente" [matTooltipPosition]="'above'"
+                                                class="btn btn-primary btn-link btn-sm btn-just-icon">
+                                                <i class="material-icons">delete</i>
+                                            </button>
                                         </mat-cell>
                                     </ng-container>
                                     <!--<ng-container matColumnDef="symbol">

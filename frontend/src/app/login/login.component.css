@@ -2,7 +2,7 @@ body {
     color: #000;
     overflow-x: hidden;
     height: 100%;
-    background-color: #B0BEC5;
+    background-color: #00bcd4 !important;
     background-repeat: no-repeat;
 }
 
@@ -165,3 +165,4 @@ a {
         margin: 0px 15px;
     }
 }
+

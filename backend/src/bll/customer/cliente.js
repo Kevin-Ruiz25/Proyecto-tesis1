@@ -201,9 +201,11 @@ exports.eliminar = async(req,res) =>{
     
     const client = await pool.connect();
     try{
-        let sql = 'delete from clt.Cliente where id = $1';
+        const cliente_sql = 'delete from clt.Cliente where id = $1';
+        const direccon_sql = 'delete from clt.direccion_cliente where id_cliente = $1';
         await client.query('BEGIN');
-        await client.query(sql,[req.params.id]);
+        await client.query(direccon_sql,[req.params.id]);
+        await client.query(cliente_sql,[req.params.id]);
         await client.query('COMMIT');
         
         res.json({exito: true, msj:'Cliente eliminado correctamente'});

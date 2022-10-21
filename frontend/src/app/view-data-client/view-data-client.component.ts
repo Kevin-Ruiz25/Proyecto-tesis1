@@ -18,7 +18,7 @@ export class ViewDataClientComponent implements OnInit {
   }
 
   getAdress() {
-    this.api.post('direcciones/obtener-direcciones', {
+    this.api.post('direcciones/obtener', {
       id_usuario: this.data.client.id_usuario_registro,
       id_cliente: this.data.client.id_cliente
     }).subscribe({

@@ -34,8 +34,8 @@ function query_direcciones(){
             dc.visita_fecha as fecha_visita
         from clt.direccion_cliente dc
         inner join adm.usuario u on (dc.ing_id_usuario = u.id)
-          left join adm.usuario u2 on (dc.upd_id_usuario = u.id)
-          left join adm.usuario u3 on (dc.visita_id_usuario = u.id)`
+          left join adm.usuario u2 on (dc.upd_id_usuario = u2.id)
+          left join adm.usuario u3 on (dc.visita_id_usuario = u3.id)`
 }
 
 exports.obtener_direcciones = async(req,res) =>{

@@ -1,10 +1,10 @@
 <div class="logo">
-    <a href="" class="simple-text">
+    <h1 class="simple-text">
         <div class="logo-img">
             <img src="/assets/img/tigoIconoApp.png" />
         </div>
-        Sinon
-    </a>
+        TIGOVENTASGT
+    </h1>
 </div>
 <div class="sidebar-wrapper">
     <div *ngIf="isMobileMenu()">
@@ -55,7 +55,7 @@
         </ul>
     </div>
     <br>
-    <h4 style="padding-left: 21px;">Bienvenido {{this.user?.nombre}} {{this.user?.apellido}}</h4>
+    <h4 style="padding-left: 21px;"><strong>Bienvenido {{this.user?.nombre}} {{this.user?.apellido}}</strong></h4>
     <ul class="nav">
         <!-- <li routerLinkActive="active"  class=" nav-item">
             <a class="nav-link" (click)="clickProfile()" >
